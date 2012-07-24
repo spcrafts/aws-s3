@@ -189,6 +189,8 @@ module AWS
           
           def set_content_disposition!
             self.headers['response-content-disposition'] = @options[:content_disposition] if @options[:content_disposition]
+            puts 'TESTING: ' + self.headers['response-content-disposition']
+            puts 'TESTING2: ' + @options[:content_disposition]
           end
           
           def set_expiry!
