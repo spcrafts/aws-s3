@@ -122,9 +122,13 @@ module AWS
             options.has_key?(:expires_in) ? Integer(options[:expires_in]) : DEFAULT_EXPIRY
           end
           
+          def content_disposition
+            options.has_key?(:content_disposition) ? "&response-content-disposition=#{options[:content_disposition]}" : ""
+          end
+          
           # Keep in alphabetical order
           def build
-            "AWSAccessKeyId=#{access_key_id}&Expires=#{expires}&Signature=#{encoded_canonical}"
+            "AWSAccessKeyId=#{access_key_id}&Expires=#{expires}&Signature=#{encoded_canonical}#{content_disposition}"
           end
       end
       
