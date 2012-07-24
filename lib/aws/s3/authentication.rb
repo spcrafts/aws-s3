@@ -63,6 +63,7 @@ module AWS
           def canonical_string            
             options = {}
             options[:expires] = expires if expires?
+            options[:content_disposition] = @options[:content_disposition] if @options.has_key?(:content_disposition)
             CanonicalString.new(request, options)
           end
           memoized :canonical_string
@@ -171,6 +172,7 @@ module AWS
             
             initialize_headers
             set_expiry!
+            set_content_disposition!
         
             headers.sort_by {|k, _| k}.each do |key, value|
               value = value.to_s.strip
@@ -183,6 +185,10 @@ module AWS
           def initialize_headers
             identify_interesting_headers
             set_default_headers
+          end
+          
+          def set_content_disposition!
+            self.headers['response-content-disposition'] = @options[:content_disposition] if @options[:content_disposition]
           end
           
           def set_expiry!
