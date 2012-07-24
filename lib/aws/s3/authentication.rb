@@ -128,7 +128,7 @@ module AWS
           
           # Keep in alphabetical order
           def build
-           breakage "AWSAccessKeyId=#{access_key_id}&Expires=#{expires}&Signature=#{encoded_canonical}#{content_disposition}"
+ "AWSAccessKeyId=#{access_key_id}&Expires=#{expires}&Signature=#{encoded_canonical}testing"
           end
       end
       
